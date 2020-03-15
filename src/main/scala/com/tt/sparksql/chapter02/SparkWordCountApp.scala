@@ -5,8 +5,8 @@ import org.apache.spark.{SparkConf, SparkContext}
 object SparkWordCountApp {
     def main(args: Array[String]): Unit = {
         println("Hello World")
-        val inputFile = "file:///Users/xuerong/Desktop/dictator_workspace/sparksql/data/input.txt"
-        val outputDir = "file:///Users/xuerong/Desktop/dictator_workspace/sparksql/out"
+        val inputFile = "file:///home/dictator/work_space/sparkSQL/data/input.txt"
+        val outputDir = "file:///home/dictator/work_space/sparkSQL/out"
         val sparkConf = new SparkConf().setMaster("local").setAppName("SparkWordCountApp")
         val sc = new SparkContext(sparkConf)
         val rdd = sc.textFile(inputFile)
