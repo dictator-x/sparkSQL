@@ -1,0 +1,5 @@
+spark-submit --class com.tt.sparksql.chapter02.SparkWordCountAppV2 --master yarn --name SparkWordCountAppV2 ./sparksql-1.0.jar hdfs://hadoop000:8020/pk/wc.data hdfs://hadoop000/pk/out
+ export HADOOP_CONF_DIR=/home/hadoop/app/hadoop-2.6.0-cdh5.15.1/etc/hadoop
+
+
+spark-submit --class com.tt.sparksql.chapter02.SparkWordCountAppV2 --master local ./sparksql-1.0.jar file:///home/hadoop/data/wc.data file:///home/hadoop/data/out
