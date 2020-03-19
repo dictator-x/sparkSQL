@@ -12,6 +12,8 @@ object SparkSessionApp {
 
     val df: DataFrame = spark.read.text("file:///home/dictator/work_space/sparkSQL/data/input.txt")
 
+    df.printSchema()
+
     df.show()
     spark.stop()
   }
