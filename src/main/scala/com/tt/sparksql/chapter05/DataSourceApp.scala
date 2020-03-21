@@ -42,6 +42,8 @@ object DataSourceApp {
                   .option("password", password)
                   .load()
     jdbcDF.select("TBL_ID", "TBL_NAME").show()
+    // wite to db
+    // jdbcDF.write().jdbc(url, "s")
   }
 
   def jdbc(spark: SparkSession) = {
