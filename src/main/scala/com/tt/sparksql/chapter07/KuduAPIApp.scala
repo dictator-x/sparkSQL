@@ -13,10 +13,13 @@ object KuduAPIApp {
                                   .build()
 
     val tableName = "helloworld"
+    val newTableName = "newhelloworld"
     // createTable(client, tableName)
     // insertRows(client, tableName)
     // deleteTable(client, tableName)
-    queryTable(client, tableName)
+    // queryTable(client, tableName)
+    // alterRow(client, tableName)
+    renameTable(client, tableName, newTableName)
     client.close()
   }
 
@@ -70,5 +73,23 @@ object KuduAPIApp {
         println(result.getString("word") + "=>" + result.getInt("cnt"))
       }
     }
+  }
+
+  def alterRow(client: KuduClient, tableName: String) = {
+    val table: KuduTable = client.openTable(tableName)
+    val session: KuduSession = client.newSession()
+
+    val update: Update = table.newUpdate()
+    val row: PartialRow = update.getRow
+    row.addString("word", "pk-10")
+    row.addInt("cnt", 8888)
+    session.apply(update)
+  }
+
+  def renameTable(client: KuduClient, tableName: String, newTableName: String) = {
+
+    val alterOptions: AlterTableOptions = new AlterTableOptions()
+    alterOptions.renameTable(newTableName)
+    client.alterTable(tableName, alterOptions)
   }
 }
