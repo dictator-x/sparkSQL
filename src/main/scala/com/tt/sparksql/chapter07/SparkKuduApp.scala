@@ -40,7 +40,7 @@ object SparkKuduApp {
     // jdbcDF.write().jdbc(url, "s")
     spark.read.format("org.apache.kudu.spark.kudu")
       .option("kudu.master", kuduMasters)
-      .option("kudu.table", "newhelloworld")
+      .option("kudu.table", "ods")
       .load().show
     spark.stop
   }
