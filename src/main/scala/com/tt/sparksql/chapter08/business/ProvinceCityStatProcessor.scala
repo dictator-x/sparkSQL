@@ -2,7 +2,7 @@ package  com.tt.sparksql.chapter08.business
 
 import com.tt.sparksql.chapter08.`trait`.DataProcess
 import com.tt.sparksql.chapter08.utils._
-import org.apache.spark.sql.{ SparkSession, DataFrame, SaveMode }
+import org.apache.spark.sql.{ SparkSession, DataFrame }
 
 object ProvinceCityStatProcessor extends DataProcess {
 

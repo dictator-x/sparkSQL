@@ -2,10 +2,7 @@ package com.tt.sparksql.chapter08.business
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{ SparkSession, DataFrame, SaveMode }
-import org.apache.kudu.{ ColumnSchema, Schema, Type }
-import org.apache.kudu.client._
 import com.tt.sparksql.chapter08.utils._
-import java.util.{LinkedList}
 
 object LogETLApp {
 

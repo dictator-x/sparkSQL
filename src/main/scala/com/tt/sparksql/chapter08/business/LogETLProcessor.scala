@@ -2,9 +2,7 @@ package com.tt.sparksql.chapter08.business
 
 import com.tt.sparksql.chapter08.`trait`.DataProcess
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{ SparkSession, DataFrame, SaveMode }
-import org.apache.kudu.{ ColumnSchema, Schema, Type }
-import org.apache.kudu.client._
+import org.apache.spark.sql.{ SparkSession, DataFrame }
 import com.tt.sparksql.chapter08.utils._
 
 object LogETLProcessor extends DataProcess {
