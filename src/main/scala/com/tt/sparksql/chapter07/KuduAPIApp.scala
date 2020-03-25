@@ -12,14 +12,14 @@ object KuduAPIApp {
                                   .KuduClientBuilder(KUDU_MASTER)
                                   .build()
 
-    val tableName = "helloworld"
+    val tableName = "province_city_stat"
     val newTableName = "newhelloworld"
     // createTable(client, tableName)
     // insertRows(client, tableName)
     // deleteTable(client, tableName)
-    // queryTable(client, tableName)
+    queryTable(client, tableName)
     // alterRow(client, tableName)
-    renameTable(client, tableName, newTableName)
+    // renameTable(client, tableName, newTableName)
     client.close()
   }
 
@@ -70,7 +70,8 @@ object KuduAPIApp {
 
       while ( iterator.hasNext ) {
         val result: RowResult = iterator.next
-        println(result.getString("word") + "=>" + result.getInt("cnt"))
+        // println(result.getString("word") + "=>" + result.getInt("cnt"))
+        println(result)
       }
     }
   }

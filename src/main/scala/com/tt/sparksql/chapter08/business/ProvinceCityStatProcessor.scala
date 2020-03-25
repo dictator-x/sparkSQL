@@ -25,5 +25,7 @@ object ProvinceCityStatProcessor extends DataProcess {
     val partitionId = "provincename"
 
     KuduUtils.sink(result, tableName, masterAddresses, SchemaUtils.ProvinceCitySchema, partitionId)
+    println(result.count)
+    println("=======")
   }
 }

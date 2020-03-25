@@ -11,5 +11,6 @@ object SparkApp extends App {
 
     LogETLProcessor.process(spark)
     ProvinceCityStatProcessor.process(spark)
+    AreaStatProcessor.process(spark)
     spark.stop()
 }
