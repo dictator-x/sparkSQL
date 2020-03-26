@@ -1,5 +1,5 @@
-mvn clean compile
 time=20181007
+PROCESS_DATE=`date --date='1 day ago' +%Y%m%d`
 ${SPARK_HOME}/bin/spark-submit \
 --class com.tt.sparksql.chapter08.SparkApp \
 --master local \
