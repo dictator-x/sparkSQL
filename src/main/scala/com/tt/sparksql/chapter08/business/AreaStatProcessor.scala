@@ -7,7 +7,7 @@ import org.apache.spark.sql.{ SparkSession, DataFrame }
 object AreaStatProcessor extends DataProcess {
 
   override def process(spark: SparkSession) = {
-    val sourceTableName = "ods"
+    val sourceTableName = DateUtils.getTableName("ods", spark)
     val masterAddresses = "centos"
 
     val odsDF: DataFrame = spark.read.format("org.apache.kudu.spark.kudu")
@@ -23,7 +23,7 @@ object AreaStatProcessor extends DataProcess {
     val result: DataFrame = spark.sql(SQLUtils.AREA_SQL_STEP2)
     result.show
 
-    val sinkTableName = "area_stat"
+    val sinkTableName = DateUtils.getTableName("area_stat", spark)
     val partitionId = "provincename"
     // result.printSchema
 

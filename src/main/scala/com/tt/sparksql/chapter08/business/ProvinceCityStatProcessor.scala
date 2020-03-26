@@ -8,7 +8,7 @@ object ProvinceCityStatProcessor extends DataProcess {
 
   override def process(spark: SparkSession) = {
 
-    val sourceTableName = "ods"
+    val sourceTableName = DateUtils.getTableName("ods", spark)
     val masterAddresses = "centos"
 
     val odsDF: DataFrame = spark.read.format("org.apache.kudu.spark.kudu")
@@ -21,7 +21,7 @@ object ProvinceCityStatProcessor extends DataProcess {
     val result: DataFrame = spark.sql(SQLUtils.PROVINCE_CITY_SQL)
     result.show(false)
 
-    val tableName = "province_city_stat"
+    val tableName = DateUtils.getTableName("province_city_stat", spark)
     val partitionId = "provincename"
 
     KuduUtils.sink(result, tableName, masterAddresses, SchemaUtils.ProvinceCitySchema, partitionId)

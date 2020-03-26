@@ -10,11 +10,14 @@ object LogETLProcessor extends DataProcess {
   override def process(spark: SparkSession) = {
     import spark.implicits._
 
-    var jsonDF: DataFrame = spark.read.json("file:///home/dictator/work_space/sparkSQL/data/data-test.json")
-    // jsonDF.printSchema()
-    // jsonDF.show(false)
+    val rawPath: String = spark.sparkContext.getConf.get("spark.raw.path")
 
-    val ipRawRdd: RDD[String] = spark.sparkContext.textFile("file:///home/dictator/work_space/sparkSQL/data/ip.txt")
+    var jsonDF: DataFrame = spark.read.json(rawPath)
+    // jsonDF.printSchema()
+    // jsonDF.select("sessionId").show(1000, false)
+
+    val ipRulePath: String = spark.sparkContext.getConf.get("spark.ip.path")
+    val ipRawRdd: RDD[String] = spark.sparkContext.textFile(ipRulePath)
 
       val ipRuleDF: DataFrame = ipRawRdd.map(x => {
         val splits: Array[String] = x.split("\\|")
@@ -35,8 +38,6 @@ object LogETLProcessor extends DataProcess {
       //eg: spark join
       jsonDF.join(ipRuleDF, jsonDF("ip_long").between(ipRuleDF("start_ip"), ipRuleDF("end_ip"))).show
 
-    var jsonDF1: DataFrame = spark.read.json("file:///home/dictator/work_space/sparkSQL/data/data-test.json")
-
     jsonDF.createOrReplaceTempView("logs")
     ipRuleDF.createOrReplaceTempView("ips")
 
@@ -44,12 +45,11 @@ object LogETLProcessor extends DataProcess {
     // spark.sql(sql).show(false)
     val result: DataFrame = spark.sql(sql)
 
-    val tableName = "ods"
+    val tableName = DateUtils.getTableName("ods", spark)
     val masterAddresses = "centos"
     val partitionId = "ip"
 
     KuduUtils.sink(result, tableName, masterAddresses, SchemaUtils.ODSSchema, partitionId)
-
 
   }
 }

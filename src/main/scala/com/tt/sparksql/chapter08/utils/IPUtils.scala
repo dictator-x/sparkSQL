@@ -3,7 +3,9 @@ package com.tt.sparksql.chapter08.utils
 object IPUtils {
 
   def ip2Long(ip: String) = {
-    val splits: Array[String] = ip.split("\\.")
+    println(">>>>>>>>>>>>>>>")
+    println(ip)
+    val splits: Array[String] = ip.split("[.]")
     var ipNum = 0l
 
     for ( i <- 0 until(splits.length) ) {

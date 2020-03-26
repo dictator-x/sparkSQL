@@ -48,7 +48,7 @@ object LogETLApp {
     // spark.sql(sql).show(false)
     val result: DataFrame = spark.sql(sql)
 
-    val tableName = "ods"
+    val tableName = DateUtils.getTableName("ods", spark)
     val masterAddresses = "centos"
     val partitionId = "ip"
 
