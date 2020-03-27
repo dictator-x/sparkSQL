@@ -1,3 +1,5 @@
+#!/usr/bin/sh
+mvn clean package
 time=20181007
 PROCESS_DATE=`date --date='1 day ago' +%Y%m%d`
 ${SPARK_HOME}/bin/spark-submit \
