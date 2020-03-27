@@ -21,7 +21,7 @@ object JoinApp01 extends App {
         })
       .foreach(println)
 
-    // Thread.sleep(20000)
+    Thread.sleep(20000)
 
     spark.stop()
 

@@ -19,7 +19,7 @@ object JoinApp02 extends App {
             yield (key, broadcastPeople.get(key).getOrElse(""), value._2)
     }).foreach(println)
 
+    Thread.sleep(20000)
     spark.stop()
-
 
 }
