@@ -81,6 +81,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.facebook.presto</groupId>
+      <artifactId>presto-jdbc</artifactId>
+      <version>0.233.1</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.kudu</groupId>
       <artifactId>kudu-client</artifactId>
       <version>1.7.0</version>
@@ -112,50 +118,50 @@
         <configuration>
           <useFile>false</useFile>
           <disableXmlReport>true</disableXmlReport>
-            <!-- If you have classpath issue like NoDefClassError,... -->
-            <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
-          <includes>
-            <include>**/*Test.*</include>
-            <include>**/*Suite.*</include>
-          </includes>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>scala-maven-plugin</artifactId>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>compile</goal>
-                    <goal>testCompile</goal>
-                </goals>
-                <configuration>
-                    <args>
-                        <arg>-dependencyfile</arg>
-                        <arg>${project.build.directory}/.scala_dependencies</arg>
-                    </args>
-                </configuration>
-            </execution>
-        </executions>
-        <configuration>
-          <launchers>
-            <!-- <launcher> -->
+          <!-- If you have classpath issue like NoDefClassError,... -->
+          <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
+        <includes>
+          <include>**/*Test.*</include>
+          <include>**/*Suite.*</include>
+        </includes>
+      </configuration>
+    </plugin>
+    <plugin>
+      <groupId>net.alchim31.maven</groupId>
+      <artifactId>scala-maven-plugin</artifactId>
+      <executions>
+        <execution>
+          <goals>
+            <goal>compile</goal>
+            <goal>testCompile</goal>
+          </goals>
+          <configuration>
+            <args>
+              <arg>-dependencyfile</arg>
+              <arg>${project.build.directory}/.scala_dependencies</arg>
+            </args>
+          </configuration>
+        </execution>
+      </executions>
+      <configuration>
+        <launchers>
+          <!-- <launcher> -->
             <!--   <id>foo</id> -->
             <!--   <mainClass>org.example.MyClass</mainClass> -->
             <!--   <!-1- args are optional -1-> -->
             <!--   <args> -->
-            <!--     <arg>arg1</arg> -->
-            <!--   </args> -->
+              <!--     <arg>arg1</arg> -->
+              <!--   </args> -->
             <!--   <!-1- jvmArgs are optional -1-> -->
             <!--   <jvmArgs> -->
-            <!--     <jvmArg>-Xmx128m</jvmArg> -->
-            <!--     <jvmArg>-Djava.library.path=...</jvmArg> -->
-            <!--   </jvmArgs> -->
+              <!--     <jvmArg>-Xmx128m</jvmArg> -->
+              <!--     <jvmArg>-Djava.library.path=...</jvmArg> -->
+              <!--   </jvmArgs> -->
             <!-- </launcher> -->
-            <!-- you could define other launcher -->
-          </launchers>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+          <!-- you could define other launcher -->
+        </launchers>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 </project>
